@@ -1,0 +1,379 @@
+rivery:
+  entity_name: river-60b4c94037eaab31ea6380e9
+  version: 0.2.5
+  type: river
+  cross_id: 60b4c94037eaab31ea6380e9
+  definition:
+    properties:
+      steps:
+      - type: container
+        isEnabled: true
+        step_name: Data Ingestion
+        isParallel: true
+        container_running: run_once
+        loop_over_value: ''
+        loop_over_variable_name: []
+        steps:
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Promoted Tweets
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380ea
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Tweet Statistics
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380ec
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Ad Accounts
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380ee
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Campaigns
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380f0
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Ad Groups
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380f2
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Ads
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380f4
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Adsets
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380f6
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Campaigns
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380f8
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Insights
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380fa
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Ad Accounts
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380fc
+        - type: step
+          isEnabled: true
+          step_name: Snapchat - Ad Stats
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea6380fe
+        - type: step
+          isEnabled: true
+          step_name: Snapchat - Ads
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea638100
+        - type: step
+          isEnabled: true
+          step_name: Snapchat - Ad Squads
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea638102
+        - type: step
+          isEnabled: true
+          step_name: Snapchat - Campaigns
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea638104
+        - type: step
+          isEnabled: true
+          step_name: Snapchat - Ad Accounts
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea638106
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Tweets
+          block_primary_type: river
+          block_type: river
+          river_id: 60b4c94037eaab31ea638108
+      - type: container
+        isEnabled: true
+        step_name: 'TODO: Dimension Tables'
+        isParallel: true
+        container_running: run_once
+        loop_over_value: ''
+        loop_over_variable_name: []
+        steps:
+        - type: step
+          isEnabled: true
+          step_name: DIM_AD_ACCOUNT
+          block_primary_type: sql
+          block_type: big_query_sql
+          file_type: csv
+          fzConnection: {}
+          split_interval: d
+          dataset_id: '{dataset_b2c_bq}'
+          compression: none
+          schema_id: null
+          drop_after: false
+          target_loading: overwrite
+          execute_sql_command: false
+          connection_id: 60b4c94037eaab31ea63810a
+          target_table: dim_ad_account
+          split_tables: 'no'
+          database: null
+          fields: []
+          target_type: table
+          mapping_message: false
+          block_db_type: big_query_sql
+          query_priority: interactive
+          use_standard_sql: true
+          flatten_results_standard: false
+          sql_query: "SELECT \n'Facebook' AS CHANNEL,\n_ACCOUNT_ID AS ID,\n_ACCOUNT_NAME\
+            \ AS NAME,\nNULL AS UPDATED_AT,\nNULL AS STATUS,\n_CREATED_TIME AS CREATED_AT,\n\
+            _TIMEZONE_NAME AS TIMEZONE,\n_CURRENCY AS CURRENCY\nFROM {dataset_b2c_bq}.fb_ad_accounts\n\
+            UNION ALL\nSELECT\n'Twitter' AS CHANNEL,\nID AS ID,\nNAME AS NAME,\nUPDATED_AT\
+            \ AS UPDATED_AT,\nAPPROVAL_STATUS AS STATUS,\nCREATED_AT AS CREATED_AT,\n\
+            TIMEZONE AS TIMEZONE,\nNULL AS CURRENCY\nFROM {dataset_b2c_bq}.twitter_ad_accounts\n\
+            UNION ALL\nSELECT\n'Snapchat' AS CHANNEL,\nID AS ID,\nNAME AS NAME,\n\
+            UPDATED_AT AS UPDATED_AT,\nSTATUS AS STATUS,\nCREATED_AT AS CREATED_AT,\n\
+            TIMEZONE AS TIMEZONE,\nCURRENCY AS CURRENCY\nFROM {dataset_b2c_bq}.snapchat_ad_accounts"
+        - type: step
+          isEnabled: true
+          step_name: DIM_CAMPAIGN
+          block_primary_type: sql
+          block_type: big_query_sql
+          file_type: csv
+          target_table: dim_campaign
+          dataset_id: '{dataset_b2c_bq}'
+          compression: none
+          schema_id: null
+          drop_after: false
+          target_loading: overwrite
+          execute_sql_command: false
+          connection_id: 60b4c94037eaab31ea63810a
+          split_interval: d
+          split_tables: 'no'
+          database: null
+          fields: []
+          target_type: table
+          mapping_message: false
+          block_db_type: big_query_sql
+          query_priority: interactive
+          use_standard_sql: true
+          flatten_results_standard: false
+          sql_query: "SELECT \n'Facebook' AS CHANNEL,\n_CAMPAIGN_ID AS ID,\n_CAMPAGIN_NAME\
+            \ AS NAME,\n_UPDATED_TIME AS UPDATED_AT,\n_STATUS AS STATUS,\n_CREATED_TIME\
+            \ AS CREATED_AT,\n_START_TIME AS START_TIME,\n_STOP_TIME AS END_TIME,\n\
+            _OBJECTIVE AS OBJECTIVE,\n_BUYING_TYPE AS BUY_MODEL,\nNULL AS DAILY_BUDGET,\n\
+            CAST(_LIFETIME_BUDGET AS FLOAT64) AS LIFETIME_BUDGET,\nCAST(_SPEND_CAP\
+            \ AS INT64) AS SPEND_CAP,\n_ACCOUNT_ID AS ACCOUNT_ID\nFROM {dataset_b2c_bq}.fb_campaigns\n\
+            UNION ALL\nSELECT\n'Twitter' AS CHANNEL,\nID AS ID,\nNAME AS NAME,\nUPDATED_AT\
+            \ AS UPDATED_AT,\nEFFECTIVE_STATUS AS STATUS,\nCREATED_AT AS CREATED_AT,\n\
+            START_TIME AS START_TIME,\nEND_TIME AS END_TIME,\nNULL AS OBJECTIVE,\n\
+            NULL AS BUY_MODEL,\nDAILY_BUDGET_AMOUNT_LOCAL_MICRO/1000000 AS DAILY_BUDGET,\n\
+            TOTAL_BUDGET_AMOUNT_LOCAL_MICRO/1000000 AS LIFETIME_BUDGET,\nNULL AS SPEND_CAP,\n\
+            ACCOUNT_ID AS ACCOUNT_ID\nFROM {dataset_b2c_bq}.twitter_campaigns\nUNION\
+            \ ALL\nSELECT\n'Snapchat' AS CHANNEL,\nID AS ID,\nNAME AS NAME,\nUPDATED_AT\
+            \ AS UPDATED_AT,\nSTATUS AS STATUS,\nCREATED_AT AS CREATED_AT,\nSTART_TIME\
+            \ AS START_TIME,\nEND_TIME AS END_TIME,\nOBJECTIVE AS OBJECTIVE,\nBUY_MODEL\
+            \ AS BUY_MODEL,\nDAILY_BUDGET_MICRO/1000000 AS DAILY_BUDGET,\nNULL AS\
+            \ LIFETIME_BUDGET,\nLIFETIME_SPEND_CAP_MICRO AS SPEND_CAP,\nAD_ACCOUNT_ID\
+            \ AS ACCOUNT_ID\nFROM {dataset_b2c_bq}.snapchat_campaigns"
+        - type: step
+          isEnabled: true
+          step_name: DIM_AD_GROUP
+          block_primary_type: sql
+          block_type: big_query_sql
+          file_type: csv
+          split_interval: d
+          dataset_id: '{dataset_b2c_bq}'
+          compression: none
+          schema_id: null
+          drop_after: false
+          target_loading: overwrite
+          execute_sql_command: false
+          connection_id: 60b4c94037eaab31ea63810a
+          target_table: dim_ad_group
+          split_tables: 'no'
+          database: null
+          fields: []
+          target_type: table
+          mapping_message: false
+          block_db_type: big_query_sql
+          query_priority: interactive
+          use_standard_sql: true
+          sql_query: "SELECT \n'Facebook' AS CHANNEL,\n_ADSET_ID AS ID,\n_ADSET_NAME\
+            \ AS NAME,\n_UPDATED_TIME AS UPDATED_AT,\n_STATUS AS STATUS,\n_CREATED_TIME\
+            \ AS CREATED_AT,\n_START_TIME AS START_TIME,\n_END_TIME AS END_TIME,\n\
+            _LIFETIME_BUDGET AS LIFETIME_BUDGET,\n_BID_STRATEGY AS BID_STRATEGY,\n\
+            _OPTIMIZATION_GOAL AS OPTIMIZATION,\n_CAMPAIGN_ID AS CAMPAIGN_ID\nFROM\
+            \ {dataset_b2c_bq}.fb_adsets\nUNION ALL\nSELECT\n'Twitter' AS CHANNEL,\n\
+            ID AS ID,\nNAME AS NAME,\nUPDATED_AT AS UPDATED_AT,\nENTITY_STATUS AS\
+            \ STATUS,\nCREATED_AT AS CREATED_AT,\nSTART_TIME AS START_TIME,\nEND_TIME\
+            \ AS END_TIME,\nTOTAL_BUDGET_AMOUNT_LOCAL_MICRO/1000000 AS LIFETIME_BUDGET,\n\
+            BID_TYPE AS BID_STRATEGY,\nOPTIMIZATION AS OPTIMIZATION,\nCAMPAIGN_ID\
+            \ AS CAMPAIGN_ID\nFROM {dataset_b2c_bq}.twitter_ad_groups\nUNION ALL\n\
+            SELECT\n'Snapchat' AS CHANNEL,\nID AS ID,\nNAME AS NAME,\nUPDATED_AT AS\
+            \ UPDATED_AT,\nSTATUS AS STATUS,\nCREATED_AT AS CREATED_AT,\nSTART_TIME\
+            \ AS START_TIME,\nEND_TIME AS END_TIME,\nLIFETIME_BUDGET_MICRO/1000000\
+            \ AS LIFETIME_BUDGET,\nBID_STRATEGY AS BID_STRATEGY,\nOPTIMIZATION_GOAL\
+            \ AS OPTIMIZATION,\nCAMPAIGN_ID AS CAMPAIGN_ID\nFROM {dataset_b2c_bq}.snapchat_ad_squads"
+        - type: step
+          isEnabled: true
+          step_name: DIM_AD
+          block_primary_type: sql
+          block_type: big_query_sql
+          file_type: csv
+          split_interval: d
+          dataset_id: '{dataset_b2c_bq}'
+          compression: none
+          schema_id: null
+          drop_after: false
+          target_loading: overwrite
+          execute_sql_command: false
+          connection_id: 60b4c94037eaab31ea63810a
+          target_table: dim_ad
+          split_tables: 'no'
+          database: null
+          fields: []
+          target_type: table
+          mapping_message: false
+          block_db_type: big_query_sql
+          query_priority: interactive
+          use_standard_sql: true
+          sql_query: "SELECT \n'Facebook' AS CHANNEL,\n_AD_ID AS ID,\n_AD_NAME AS\
+            \ NAME,\n_UPDATED_TIME AS UPDATED_AT,\n_STATUS AS STATUS,\n_CREATED_TIME\
+            \ AS CREATED_AT,\n_CREATIVE_ID AS CREATIVE_ID,\n_ADSET_ID AS AD_GROUP_ID\n\
+            FROM {dataset_b2c_bq}.fb_ads\nUNION ALL\nSELECT\n'Twitter' AS CHANNEL,\n\
+            P.ID AS ID,\nT.FULL_TEXT AS NAME,\nP.UPDATED_AT AS UPDATED_AT,\nP.ENTITY_STATUS\
+            \ AS STATUS,\nP.CREATED_AT AS CREATED_AT,\nNULL AS CREATIVE_ID,\nP.LINE_ITEM_ID\
+            \ AS AD_GROUP_ID\nFROM {dataset_b2c_bq}.twitter_promoted_tweets P\nLEFT\
+            \ JOIN {dataset_b2c_bq}.twitter_tweets T\nON P.TWEET_ID = T.TWEET_ID and\
+            \ P.ACCOUNT_ID = T.ACCOUNT_ID\nUNION ALL\nSELECT\n'Snapchat' AS CHANNEL,\n\
+            ID AS ID,\nNAME AS NAME,\nUPDATED_AT AS UPDATED_AT,\nSTATUS AS STATUS,\n\
+            CREATED_AT AS CREATED_AT,\nCREATIVE_ID AS CREATIVE_ID,\nAD_SQUAD_ID AS\
+            \ AD_GROUP_ID\nFROM {dataset_b2c_bq}.snapchat_ads"
+      - type: step
+        isEnabled: true
+        step_name: 'TODO: FACT_AD_PERFORMANCE'
+        block_primary_type: sql
+        block_type: big_query_sql
+        file_type: csv
+        target_table: fact_ad_performance
+        dataset_id: '{dataset_b2c_bq}'
+        compression: none
+        schema_id: null
+        drop_after: false
+        target_loading: overwrite
+        execute_sql_command: false
+        connection_id: 60b4c94037eaab31ea63810a
+        split_interval: d
+        split_tables: 'no'
+        database: null
+        fields: []
+        target_type: table
+        mapping_message: false
+        block_db_type: big_query_sql
+        query_priority: interactive
+        use_standard_sql: true
+        sql_query: "/*FACEBOOK*/\nSELECT \n'Facebook' as CHANNEL,\n_AD_ID AS AD_ID,\n\
+          _AD_NAME AS AD_NAME,\n_ACCOUNT_NAME AS ACCOUNT_NAME,\n_ACCOUNT_ID AS ACCOUNT_ID,\n\
+          _CAMPAIGN_ID AS CAMPAIGN_ID,\n_CAMPAIGN_NAME AS CAMPAIGN_NAME,\nCAST(_IMPRESSIONS\
+          \ AS FLOAT64) AS IMPRESSIONS,\n_ADSET_ID AS AD_GROUP_ID,\n_ADSET_NAME AS\
+          \ AD_GROUP_NAME,\nCAST(_CLICKS AS FLOAT64) AS CLICKS,\nCAST(_SPEND AS FLOAT64)\
+          \ AS SPEND,\nmax(case when actions._action_type = 'video_view' then cast(actions._value\
+          \ as INT64) ELSE NULL END) AS video_views,\nmax(case when actions._action_type\
+          \ = 'post' then cast(actions._value as INT64) ELSE NULL END) AS shares,\n\
+          max(case when actions._action_type = 'onsite_conversion.post_save' then\
+          \ cast(actions._value as INT64) ELSE NULL END) AS saves,\nmax(case when\
+          \ actions._action_type = 'purchase' then cast(actions._value as INT64) ELSE\
+          \ NULL END) AS conversion_purchases,\nmax(case when action_values._action_type\
+          \ = 'purchase' then cast(action_values._value as INT64) ELSE NULL END) AS\
+          \ conversion_purchase_value,\n_DATE_START AS DATE,\nLOADDATE AS LOAD_DATE,\n\
+          CAST(_FREQUENCY AS FLOAT64) AS FREQUENCY,\nmax(case when video_p25._action_type\
+          \ = 'video_view' then cast(video_p25._value as INT64) ELSE NULL END) AS\
+          \ video_views_25,\nmax(case when video_p50._action_type = 'video_view' then\
+          \ cast(video_p50._value as INT64) ELSE NULL END) AS video_views_50,\nmax(case\
+          \ when video_p75._action_type = 'video_view' then cast(video_p75._value\
+          \ as INT64) ELSE NULL END) AS video_views_75,\nmax(case when video_p100._action_type\
+          \ = 'video_view' then cast(video_p100._value as INT64) ELSE NULL END) AS\
+          \ video_views_100,\nNULL AS REPLIES,\nmax(case when actions._action_type\
+          \ = 'link_click' then cast(actions._value as INT64) ELSE NULL END) AS url_clicks,\n\
+          NULL AS RETWEETS,\nNULL AS FOLLOWS,\nmax(case when actions._action_type\
+          \ = 'like' then cast(actions._value as INT64) ELSE NULL END) AS likes,\n\
+          max(case when actions._action_type = 'post_engagement' then cast(actions._value\
+          \ as INT64) ELSE NULL END) AS engagement_count,\nNULL AS SWIPES,\nCAST(_REACH\
+          \ AS INT64) AS REACH,\nmax(case when actions._action_type = 'comment' then\
+          \ cast(actions._value as INT64) ELSE NULL END) AS post_comments,\n_PUBLISHER_PLATFORM\
+          \ AS PLATFORM\nFROM {dataset_b2c_bq}.fb_ad_insights bq\nLEFT JOIN UNNEST(_actions)\
+          \ as actions\nLEFT JOIN UNNEST(_action_values) as action_values\nLEFT JOIN\
+          \ UNNEST(_VIDEO_P25_WATCHED_ACTIONS) as video_p25\nLEFT JOIN UNNEST(_VIDEO_P50_WATCHED_ACTIONS)\
+          \ as video_p50\nLEFT JOIN UNNEST(_VIDEO_P75_WATCHED_ACTIONS) as video_p75\n\
+          LEFT JOIN UNNEST(_VIDEO_P100_WATCHED_ACTIONS) as video_p100\nGROUP BY\n\
+          CHANNEL,\nAD_ID,\nAD_NAME,\nACCOUNT_NAME,\nACCOUNT_ID,\nCAMPAIGN_ID,\nCAMPAIGN_NAME,\n\
+          IMPRESSIONS,\nAD_GROUP_ID,\nAD_GROUP_NAME,\nCLICKS,\nSPEND,\nDATE,\nSWIPES,\n\
+          LOAD_DATE,\nFREQUENCY,\nREPLIES,\nRETWEETS,\nFOLLOWS,\nSWIPES,\nREACH,\n\
+          PLATFORM\n/*TWITTER*/\nUNION ALL\nSELECT \n'Twitter' as CHANNEL,\nP_TWEETS.ID\
+          \ AS AD_ID,\nTWEETS.FULL_TEXT AS AD_NAME,\nACCOUNT.NAME AS ACCOUNT_NAME,\n\
+          ACCOUNT.ID AS ACCOUNT_ID,\nCAMPAIGN.ID AS CAMPAIGN_ID,\nCAMPAIGN.NAME AS\
+          \ CAMPAIGN_NAME,\nSTATS.IMPRESSIONS AS IMPRESSIONS,\nAD_GROUP.ID AS AD_GROUP_ID,\n\
+          AD_GROUP.NAME AS AD_GROUP_NAME,\nSTATS.CLICKS AS CLICKS,\n(STATS.BILLED_CHARGE_LOCAL_MICRO/1000000)\
+          \ AS SPEND,\nSTATS.VIDEO_CONTENT_STARTS AS VIDEO_VIEWS,\nNULL AS SHARES,\n\
+          NULL AS SAVES,\nSTATS.CONVERSION_PURCHASES_METRIC  AS CONVERSION_PURCHASES,\n\
+          STATS.CONVERSION_PURCHASES_SALE_AMOUNT AS CONVERSION_PURCHASE_VALUE,\nUTC_TIME\
+          \ AS DATE,\nSTATS.LOADDATE AS LOAD_DATE,\nNULL AS FREQUENCY,\nSTATS.VIDEO_VIEWS_25\
+          \ AS VIDEO_VIEWS_25,\nSTATS.VIDEO_VIEWS_50 AS VIDEO_VIEWS_50,\nSTATS.VIDEO_VIEWS_75\
+          \ AS VIDEO_VIEWS_75,\nSTATS.VIDEO_VIEWS_100 AS VIDEO_VIEWS_100,\nSTATS.REPLIES\
+          \ AS REPLIES,\nSTATS.URL_CLICKS AS URL_CLICKS,\nSTATS.RETWEETS AS RETWEETS,\n\
+          STATS.FOLLOWS AS FOLLOWS,\nSTATS.LIKES AS LIKES,\nSTATS.ENGAGEMENTS AS ENGAGEMENT_COUNT,\n\
+          NULL AS SWIPES,\nNULL AS REACH,\nNULL AS POST_COMMENTS,\n'Twitter' AS PLATFORM\n\
+          FROM rivery_cs.twitter_tweet_stats STATS \nINNER JOIN rivery_cs.twitter_promoted_tweets\
+          \ P_TWEETS\nON STATS.ID = P_TWEETS.ID\nLEFT JOIN rivery_cs.twitter_tweets\
+          \ TWEETS\nON P_TWEETS.TWEET_ID = TWEETS.TWEET_ID AND P_TWEETS.ACCOUNT_ID\
+          \ = TWEETS.ACCOUNT_ID AND P_TWEETS.ACCOUNT_ID = TWEETS.ACCOUNT_ID\nLEFT\
+          \ JOIN rivery_cs.twitter_ad_groups AD_GROUP\nON P_TWEETS.LINE_ITEM_ID =\
+          \ AD_GROUP.ID\nLEFT JOIN rivery_cs.twitter_campaigns CAMPAIGN\nON AD_GROUP.CAMPAIGN_ID\
+          \ = CAMPAIGN.ID\nLEFT JOIN rivery_cs.twitter_ad_accounts ACCOUNT\nON TWEETS.ACCOUNT_ID\
+          \ = ACCOUNT.ID\n/*SNAPCHAT*/\nUNION ALL\nSELECT\n'Snapchat' as CHANNEL,\n\
+          AD.ID AS AD_ID,\nAD.NAME AS AD_NAME,\nACCOUNT.NAME AS ACCOUNT_NAME,\nACCOUNT.ID\
+          \ AS ACCOUNT_ID,\nCAMPAIGN.ID AS CAMPAIGN_ID,\nCAMPAIGN.NAME AS CAMPAIGN_NAME,\n\
+          CAST(STATS_IMPRESSIONS as FLOAT64) AS IMPRESSIONS,\nAD_SQUAD.ID AS AD_GROUP_ID,\n\
+          AD_SQUAD.NAME AS AD_GROUP_NAME,\nNULL AS CLICKS,\n(STATS_SPEND/1000000)\
+          \ AS SPEND,\nSTATS_VIDEO_VIEWS AS VIDEO_VIEWS,\nSTATS_SHARES AS SHARES,\n\
+          STATS_SAVES AS SAVES,\nSTATS_CONVERSION_PURCHASES  AS CONVERSION_PURCHASES,\n\
+          STATS_CONVERSION_PURCHASES_VALUE AS CONVERSION_PURCHASE_VALUE,\nSTATS.START_TIME\
+          \ AS DATE,\nSTATS.LOADDATE AS LOAD_DATE,\nSTATS_FREQUENCY AS FREQUENCY,\n\
+          STATS_QUARTILE_1 AS VIDEO_VIEWS_25,\nSTATS_QUARTILE_2 AS VIDEO_VIEWS_50,\n\
+          STATS_QUARTILE_3 AS VIDEO_VIEWS_75,\nSTATS_VIEW_COMPLETION AS VIDEO_VIEWS_100,\n\
+          NULL AS REPLIES,\nNULL AS URL_CLICKS,\nNULL AS RETWEETS,\nNULL AS FOLLOWS,\n\
+          NULL AS LIKES,\nNULL AS ENGAGEMENT_COUNT,\nSTATS_SWIPES AS SWIPES,\nSTATS_UNIQUES\
+          \ AS REACH,\nNULL AS POST_COMMENTS,\n'Snapchat' AS PLATFORM\n FROM rivery_cs.snapchat_ad_stats\
+          \ STATS  \nLEFT JOIN rivery_cs.snapchat_ads AD\nON STATS.AD_ID = AD.ID \n\
+          LEFT JOIN rivery_cs.snapchat_ad_squads AD_SQUAD \nON AD.AD_SQUAD_ID = AD_SQUAD.ID\n\
+          LEFT JOIN rivery_cs.snapchat_campaigns CAMPAIGN \nON AD_SQUAD.CAMPAIGN_ID\
+          \ = CAMPAIGN.ID\nLEFT JOIN rivery_cs.snapchat_ad_accounts ACCOUNT \nON CAMPAIGN.AD_ACCOUNT_ID\
+          \ = ACCOUNT.ID"
+      variables: {}
+    schedule: {}
+    notifications:
+      on_warning: {}
+      on_failure: {}
+      on_run_threshold: {}
+    name: MARKETING B2C - MASTER SCHEDULER - BQ
+    description: Imported by Rivery CLI
+    type: logic

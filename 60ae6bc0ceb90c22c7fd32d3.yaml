@@ -1,0 +1,1652 @@
+rivery:
+  entity_name: river-60ae6bc0ceb90c22c7fd32d3
+  version: 0.2.5
+  type: river
+  cross_id: 60ae6bc0ceb90c22c7fd32d3
+  definition:
+    properties:
+      steps:
+      - type: container
+        isEnabled: true
+        step_name: Social Data Pulls
+        isParallel: true
+        container_running: run_once
+        loop_over_value: ''
+        loop_over_variable_name: []
+        steps:
+        - type: step
+          isEnabled: true
+          step_name: Instagram - Posts
+          block_primary_type: river
+          block_type: river
+          river_id: 60ae6bc0ceb90c22c7fd32cf
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Posts
+          block_primary_type: river
+          block_type: river
+          river_id: 60ae6bc0ceb90c22c7fd32cd
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Tweet Details
+          block_primary_type: river
+          block_type: river
+          river_id: 60ae6bc0ceb90c22c7fd32d8
+        - type: step
+          isEnabled: true
+          step_name: Twitter - Tweet Activity
+          block_primary_type: river
+          block_type: river
+          river_id: 60ae6bc0ceb90c22c7fd32d1
+        - type: step
+          isEnabled: true
+          step_name: Facebook - Pages
+          block_primary_type: river
+          block_type: river
+          river_id: 60ae6bc0ceb90c22c7fd32d4
+        - type: step
+          isEnabled: true
+          step_name: Instagram - Account
+          block_primary_type: river
+          block_type: river
+          river_id: 60ae6bc0ceb90c22c7fd32d6
+      - type: container
+        isEnabled: true
+        step_name: Social Data Feeds
+        isParallel: true
+        container_running: run_once
+        loop_over_value: ''
+        loop_over_variable_name: []
+        steps:
+        - type: step
+          isEnabled: true
+          step_name: FB Logic
+          block_primary_type: sql
+          block_type: snowflake
+          execute_sql_command: false
+          compression: none
+          database: '{BLOCK_DB}'
+          file_type: csv
+          fields:
+          - name: channel
+            fields: []
+            alias: channel
+            length: 8
+            fieldName: channel
+            mode: NULLABLE
+            type: STRING
+            id: channel
+          - name: account_name
+            fields: []
+            alias: account_name
+            length: 16777216
+            fieldName: account_name
+            mode: NULLABLE
+            type: STRING
+            id: account_name
+          - name: post_id
+            isKey: true
+            fields: []
+            alias: post_id
+            length: 16777216
+            fieldName: post_id
+            mode: NULLABLE
+            type: STRING
+            id: post_id
+          - name: permalink
+            fields: []
+            alias: permalink
+            length: 16777216
+            fieldName: permalink
+            mode: NULLABLE
+            type: STRING
+            id: permalink
+          - name: title_caption
+            fields: []
+            alias: title_caption
+            length: 16777216
+            fieldName: title_caption
+            mode: NULLABLE
+            type: STRING
+            id: title_caption
+          - name: account_id
+            isKey: true
+            fields: []
+            alias: account_id
+            length: 16777216
+            fieldName: account_id
+            mode: NULLABLE
+            type: STRING
+            id: account_id
+          - name: from_name
+            fields: []
+            alias: from_name
+            length: 16777216
+            fieldName: from_name
+            mode: NULLABLE
+            type: STRING
+            id: from_name
+          - name: is_hidden
+            fields: []
+            alias: is_hidden
+            length: 38
+            fieldName: is_hidden
+            mode: NULLABLE
+            type: BOOLEAN
+            id: is_hidden
+          - name: is_published
+            fields: []
+            alias: is_published
+            length: 38
+            fieldName: is_published
+            mode: NULLABLE
+            type: BOOLEAN
+            id: is_published
+          - name: media_type
+            fields: []
+            alias: media_type
+            length: 16777216
+            fieldName: media_type
+            mode: NULLABLE
+            type: STRING
+            id: media_type
+          - name: post_description
+            fields: []
+            alias: post_description
+            length: 16777216
+            fieldName: post_description
+            mode: NULLABLE
+            type: STRING
+            id: post_description
+          - name: post_title
+            fields: []
+            alias: post_title
+            length: 16777216
+            fieldName: post_title
+            mode: NULLABLE
+            type: STRING
+            id: post_title
+          - name: created_date
+            dateFormat: yyyy-mm-dd HH:MM:SS
+            fields: []
+            alias: created_date
+            length: 38
+            fieldName: created_date
+            mode: NULLABLE
+            type: TIMESTAMP
+            id: created_date
+          - name: fb_page_category
+            fields: []
+            alias: fb_page_category
+            length: 16777216
+            fieldName: fb_page_category
+            mode: NULLABLE
+            type: STRING
+            id: fb_page_category
+          - name: new_like_count
+            fields: []
+            alias: new_like_count
+            length: 38
+            fieldName: new_like_count
+            mode: NULLABLE
+            type: NUMBER
+            id: new_like_count
+          - name: date
+            dateFormat: yyyy-mm-dd HH:MM:SS
+            isKey: true
+            fields: []
+            alias: date
+            length: 38
+            fieldName: date
+            mode: NULLABLE
+            type: TIMESTAMP
+            id: date
+          - name: hashtag_flag
+            fields: []
+            alias: hashtag_flag
+            length: 38
+            fieldName: hashtag_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: hashtag_flag
+          - name: exclamation_flag
+            fields: []
+            alias: exclamation_flag
+            length: 38
+            fieldName: exclamation_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: exclamation_flag
+          - name: question_flag
+            fields: []
+            alias: question_flag
+            length: 38
+            fieldName: question_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: question_flag
+          - name: actual_teaser_length
+            fields: []
+            alias: actual_teaser_length
+            length: 38
+            fieldName: actual_teaser_length
+            mode: NULLABLE
+            type: NUMBER
+            id: actual_teaser_length
+          - name: teaser_length_group
+            fields: []
+            alias: teaser_length_group
+            length: 16777216
+            fieldName: teaser_length_group
+            mode: NULLABLE
+            type: STRING
+            id: teaser_length_group
+          - name: impressions
+            fields: []
+            alias: impressions
+            length: 38
+            fieldName: impressions
+            mode: NULLABLE
+            type: NUMBER
+            id: impressions
+          - name: reach
+            fields: []
+            alias: reach
+            length: 38
+            fieldName: reach
+            mode: NULLABLE
+            type: NUMBER
+            id: reach
+          - name: shares
+            fields: []
+            alias: shares
+            length: 38
+            fieldName: shares
+            mode: NULLABLE
+            type: NUMBER
+            id: shares
+          - name: likes
+            fields: []
+            alias: likes
+            length: 38
+            fieldName: likes
+            mode: NULLABLE
+            type: NUMBER
+            id: likes
+          - name: comments
+            fields: []
+            alias: comments
+            length: 38
+            fieldName: comments
+            mode: NULLABLE
+            type: NUMBER
+            id: comments
+          - name: other_clicks
+            fields: []
+            alias: other_clicks
+            length: 38
+            fieldName: other_clicks
+            mode: NULLABLE
+            type: NUMBER
+            id: other_clicks
+          - name: photo_view
+            fields: []
+            alias: photo_view
+            length: 38
+            fieldName: photo_view
+            mode: NULLABLE
+            type: NUMBER
+            id: photo_view
+          - name: link_clicks
+            fields: []
+            alias: link_clicks
+            length: 38
+            fieldName: link_clicks
+            mode: NULLABLE
+            type: NUMBER
+            id: link_clicks
+          - name: video_play_clicks
+            fields: []
+            alias: video_play_clicks
+            length: 38
+            fieldName: video_play_clicks
+            mode: NULLABLE
+            type: NUMBER
+            id: video_play_clicks
+          - name: engagement
+            fields: []
+            alias: engagement
+            length: 38
+            fieldName: engagement
+            mode: NULLABLE
+            type: NUMBER
+            id: engagement
+          - name: video_views
+            fields: []
+            alias: video_views
+            length: 38
+            fieldName: video_views
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views
+          - name: video_views_30s
+            fields: []
+            alias: video_views_30s
+            length: 38
+            fieldName: video_views_30s
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views_30s
+          - name: video_post_length
+            fields: []
+            alias: video_post_length
+            length: 38
+            fieldName: video_post_length
+            mode: NULLABLE
+            type: NUMBER
+            id: video_post_length
+          - name: avg_video_view_time
+            fields: []
+            alias: avg_video_view_time
+            length: 38
+            fieldName: avg_video_view_time
+            mode: NULLABLE
+            type: NUMBER
+            id: avg_video_view_time
+          - name: click_to_play_video
+            fields: []
+            alias: click_to_play_video
+            length: 38
+            fieldName: click_to_play_video
+            mode: NULLABLE
+            type: NUMBER
+            id: click_to_play_video
+          - name: page_fan_adds
+            fields: []
+            alias: page_fan_adds
+            length: 38
+            fieldName: page_fan_adds
+            mode: NULLABLE
+            type: NUMBER
+            id: page_fan_adds
+          - name: page_fan_count
+            fields: []
+            alias: page_fan_count
+            length: 38
+            fieldName: page_fan_count
+            mode: NULLABLE
+            type: NUMBER
+            id: page_fan_count
+          - name: page_fan_count_today
+            fields: []
+            alias: page_fan_count_today
+            length: 38
+            fieldName: page_fan_count_today
+            mode: NULLABLE
+            type: NUMBER
+            id: page_fan_count_today
+          - name: page_fan_removes
+            fields: []
+            alias: page_fan_removes
+            length: 38
+            fieldName: page_fan_removes
+            mode: NULLABLE
+            type: NUMBER
+            id: page_fan_removes
+          - name: page_views
+            fields: []
+            alias: page_views
+            length: 38
+            fieldName: page_views
+            mode: NULLABLE
+            type: NUMBER
+            id: page_views
+          - name: page_consumptions
+            fields: []
+            alias: page_consumptions
+            length: 38
+            fieldName: page_consumptions
+            mode: NULLABLE
+            type: NUMBER
+            id: page_consumptions
+          - name: page_engaged_users
+            fields: []
+            alias: page_engaged_users
+            length: 38
+            fieldName: page_engaged_users
+            mode: NULLABLE
+            type: NUMBER
+            id: page_engaged_users
+          - name: page_impressions
+            fields: []
+            alias: page_impressions
+            length: 38
+            fieldName: page_impressions
+            mode: NULLABLE
+            type: NUMBER
+            id: page_impressions
+          - name: page_reach
+            fields: []
+            alias: page_reach
+            length: 38
+            fieldName: page_reach
+            mode: NULLABLE
+            type: NUMBER
+            id: page_reach
+          target_loading: overwrite
+          connection_id: 60ae6bc0ceb90c22c7fd32da
+          drop_after: false
+          target_type: table
+          split_tables: 'no'
+          block_db_type: snowflake
+          target_table: fb_master
+          schema_id: '{BLOCK_SCHEMA}'
+          use_standard_sql: false
+          sql_query: "SELECT\n'Facebook' as channel,\npg.name as account_name,\npost.id\
+            \ as post_id,\npermalink_url as permalink,\nmessage as title_caption,\n\
+            pg.id as account_id,\nfrom_name,\nis_hidden,\nis_published,\nifnull(post_type,status_type)\
+            \ as media_type,\npost_description,\npost_title,\nTO_TIMESTAMP(REPLACE(created_time,\
+            \ '+0000', '')) as created_date,\ncategory as fb_page_category,\nnew_like_count,\n\
+            TO_DATE(REPLACE(pg.date, '+0000', '')) as date,\nCASE WHEN message LIKE\
+            \ '%#%' THEN TRUE ELSE FALSE END as hashtag_flag,\nCASE WHEN message LIKE\
+            \ '%!%' THEN TRUE ELSE FALSE END as exclamation_flag,\nCASE WHEN message\
+            \ LIKE '%?%' THEN TRUE ELSE FALSE END as question_flag,\nLENGTH(message)\
+            \ as actual_teaser_length,\nCASE WHEN LENGTH(message) < 35 THEN '0-35'\
+            \ \nWHEN LENGTH(message) BETWEEN 36 and 75 THEN '36-75' \nWHEN LENGTH(message)\
+            \ BETWEEN 76 and 100 THEN '76-100'\nWHEN LENGTH(message) BETWEEN 101 and\
+            \ 125 THEN '101-125'\nWHEN LENGTH(message) >= 126 THEN '126+' END as teaser_length_group,\n\
+            post_impressions_lifetime as impressions,\npost_impressions_unique_lifetime\
+            \ as reach,\npost_activity_by_action_type_share_lifetime as shares,\n\
+            post_activity_by_action_type_like_lifetime as likes,\npost_activity_by_action_type_comment_lifetime\
+            \ as comments,\npost_clicks_by_type_other_clicks_lifetime as other_clicks,\n\
+            post_clicks_by_type_photo_view_lifetime as photo_view,\npost_clicks_by_type_link_clicks_lifetime\
+            \ as link_clicks,\npost_clicks_by_type_video_play_lifetime as video_play_clicks,\n\
+            COALESCE(post_activity_by_action_type_share_lifetime, 0) + \nCOALESCE(post_activity_by_action_type_like_lifetime,\
+            \ 0) + \nCOALESCE(post_activity_by_action_type_comment_lifetime, 0) +\
+            \ \nCOALESCE(post_clicks_by_type_other_clicks_lifetime, 0) +\nCOALESCE(post_clicks_by_type_photo_view_lifetime,\
+            \ 0) +\nCOALESCE(post_clicks_by_type_video_play_lifetime, 0) +\nCOALESCE(post_clicks_by_type_link_clicks_lifetime,\
+            \ 0) as engagement,\npost_video_views_lifetime as video_views,\npost_video_complete_views_30s_clicked_to_play_lifetime\
+            \ + post_video_complete_views_30s_autoplayed_lifetime as video_views_30s,\n\
+            post_video_length_lifetime as video_post_length,\npost_video_avg_time_watched_lifetime\
+            \ as avg_video_view_time,\npost_clicks_by_type_video_play_lifetime as\
+            \ click_to_play_video,\npage_fan_adds_day as page_fan_adds,\npage_fans_day\
+            \ as page_fan_count,\nfan_count as page_fan_count_today,\npage_fan_removes_day\
+            \ as page_fan_removes,\npage_views_total_day as page_views,\npage_consumptions_day\
+            \ as page_consumptions,\npage_engaged_users_day as page_engaged_users,\n\
+            page_impressions_day as page_impressions,\npage_impressions_unique_day\
+            \ as page_reach\nFROM {BLOCK_DB}.{BLOCK_SCHEMA}.fb_pages pg\nleft join\
+            \ (select *,\n           attach.value:description::string as post_description,\n\
+            \           attach.value:title::string as post_title,\n           attach.value:type::string\
+            \ as post_type\n           from {BLOCK_DB}.{BLOCK_SCHEMA}.fb_posts, lateral\
+            \ flatten(input => attachments_data) attach\n            where is_hidden\
+            \ = FALSE) post\non post.page_id = pg.id and DATE(REPLACE(post.created_time,'+0000',''))\
+            \ = pg.date"
+          split_interval: d
+          query_priority: interactive
+        - type: step
+          isEnabled: true
+          step_name: Instagram Logic
+          block_primary_type: sql
+          block_type: snowflake
+          sql_query: "select \n'Instagram' as channel,\nowner_id,\nacc.id as account_id,\n\
+            acc.username as account_name,\npost.ig_id as ig_id,\nmedia_id as post_id,\n\
+            media_url,\npermalink,\nlower(case when media_type = 'IMAGE' then 'photo'\
+            \ else media_type end) as media_type,\ncast( substr(timestamp,0,10) AS\
+            \ DATE) as created_date, \ncast( substr(acc.date,0,10) AS DATE) as date,\
+            \ \ncaption as title_caption,\nvideo_views_lifetime as video_views, \n\
+            like_count as likes,\ncomments_count as comments,\ncase \nwhen media_type='CAROUSEL_ALBUM'\
+            \ then carousel_album_reach_lifetime \nelse reach_lifetime end as reach,\n\
+            Case \nwhen media_type='CAROUSEL_ALBUM' then carousel_album_impressions_lifetime\
+            \ \nelse impressions_lifetime end as impressions,\nCASE \nWHEN media_type\
+            \ = 'CAROUSEL_ALBUM' THEN carousel_album_engagement_lifetime\nELSE engagement_lifetime\
+            \ END as engagement,\nsaved_lifetime as saved,\nfollowers_count as total_followers,\n\
+            follower_count_day as follows,\nimpressions_day as page_impressions,\n\
+            reach_day as page_reach\nfrom {BLOCK_DB}.{BLOCK_SCHEMA}.ig_accounts acc\n\
+            left join {BLOCK_DB}.{BLOCK_SCHEMA}.ig_posts post\non post.acc_id = acc.id\
+            \ and DATE(REPLACE(post.timestamp,'+0000','')) = acc.date"
+          execute_sql_command: false
+          compression: none
+          database: '{BLOCK_DB}'
+          file_type: csv
+          fields:
+          - name: channel
+            fields: []
+            alias: channel
+            length: 9
+            fieldName: channel
+            mode: NULLABLE
+            type: STRING
+            id: channel
+          - name: owner_id
+            fields: []
+            alias: owner_id
+            length: 16777216
+            fieldName: owner_id
+            mode: NULLABLE
+            type: STRING
+            id: owner_id
+          - name: account_id
+            isKey: true
+            fields: []
+            alias: account_id
+            length: 16777216
+            fieldName: account_id
+            mode: NULLABLE
+            type: STRING
+            id: account_id
+          - name: account_name
+            fields: []
+            alias: account_name
+            length: 16777216
+            fieldName: account_name
+            mode: NULLABLE
+            type: STRING
+            id: account_name
+          - name: ig_id
+            fields: []
+            alias: ig_id
+            length: 16777216
+            fieldName: ig_id
+            mode: NULLABLE
+            type: STRING
+            id: ig_id
+          - name: post_id
+            isKey: true
+            fields: []
+            alias: post_id
+            length: 16777216
+            fieldName: post_id
+            mode: NULLABLE
+            type: STRING
+            id: post_id
+          - name: media_url
+            fields: []
+            alias: media_url
+            length: 16777216
+            fieldName: media_url
+            mode: NULLABLE
+            type: STRING
+            id: media_url
+          - name: permalink
+            fields: []
+            alias: permalink
+            length: 16777216
+            fieldName: permalink
+            mode: NULLABLE
+            type: STRING
+            id: permalink
+          - name: media_type
+            fields: []
+            alias: media_type
+            length: 16777216
+            fieldName: media_type
+            mode: NULLABLE
+            type: STRING
+            id: media_type
+          - name: created_date
+            dateFormat: yyyy-mm-dd HH:MM:SS
+            fields: []
+            alias: created_date
+            length: 38
+            fieldName: created_date
+            mode: NULLABLE
+            type: TIMESTAMP
+            id: created_date
+          - name: date
+            dateFormat: yyyy-mm-dd HH:MM:SS
+            isKey: true
+            fields: []
+            alias: date
+            length: 38
+            fieldName: date
+            mode: NULLABLE
+            type: TIMESTAMP
+            id: date
+          - name: title_caption
+            fields: []
+            alias: title_caption
+            length: 16777216
+            fieldName: title_caption
+            mode: NULLABLE
+            type: STRING
+            id: title_caption
+          - name: video_views
+            fields: []
+            alias: video_views
+            length: 38
+            fieldName: video_views
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views
+          - name: likes
+            fields: []
+            alias: likes
+            length: 38
+            fieldName: likes
+            mode: NULLABLE
+            type: NUMBER
+            id: likes
+          - name: comments
+            fields: []
+            alias: comments
+            length: 38
+            fieldName: comments
+            mode: NULLABLE
+            type: NUMBER
+            id: comments
+          - name: reach
+            fields: []
+            alias: reach
+            length: 38
+            fieldName: reach
+            mode: NULLABLE
+            type: NUMBER
+            id: reach
+          - name: impressions
+            fields: []
+            alias: impressions
+            length: 38
+            fieldName: impressions
+            mode: NULLABLE
+            type: NUMBER
+            id: impressions
+          - name: engagement
+            fields: []
+            alias: engagement
+            length: 38
+            fieldName: engagement
+            mode: NULLABLE
+            type: NUMBER
+            id: engagement
+          - name: saved
+            fields: []
+            alias: saved
+            length: 38
+            fieldName: saved
+            mode: NULLABLE
+            type: NUMBER
+            id: saved
+          - name: total_followers
+            fields: []
+            alias: total_followers
+            length: 38
+            fieldName: total_followers
+            mode: NULLABLE
+            type: NUMBER
+            id: total_followers
+          - name: follows
+            fields: []
+            alias: follows
+            length: 38
+            fieldName: follows
+            mode: NULLABLE
+            type: NUMBER
+            id: follows
+          - name: page_impressions
+            fields: []
+            alias: page_impressions
+            length: 38
+            fieldName: page_impressions
+            mode: NULLABLE
+            type: NUMBER
+            id: page_impressions
+          - name: page_reach
+            fields: []
+            alias: page_reach
+            length: 38
+            fieldName: page_reach
+            mode: NULLABLE
+            type: NUMBER
+            id: page_reach
+          connection_id: 60ae6bc0ceb90c22c7fd32da
+          drop_after: false
+          target_type: table
+          block_db_type: snowflake
+          target_table: ig_master
+          split_tables: 'no'
+          schema_id: '{BLOCK_SCHEMA}'
+          use_standard_sql: false
+          target_loading: overwrite
+          split_interval: d
+          query_priority: interactive
+        - type: step
+          isEnabled: true
+          step_name: Twitter Logic
+          block_primary_type: sql
+          block_type: snowflake
+          execute_sql_command: false
+          compression: none
+          database: '{BLOCK_DB}'
+          file_type: csv
+          fields:
+          - name: channel
+            fields: []
+            alias: channel
+            length: 7
+            fieldName: channel
+            mode: NULLABLE
+            type: STRING
+            id: channel
+          - name: post_id
+            isKey: true
+            fields: []
+            alias: post_id
+            length: 38
+            fieldName: post_id
+            mode: NULLABLE
+            type: NUMBER
+            id: post_id
+          - name: full_text
+            fields: []
+            alias: full_text
+            length: 16777216
+            fieldName: full_text
+            mode: NULLABLE
+            type: STRING
+            id: full_text
+          - name: title_caption
+            fields: []
+            alias: title_caption
+            length: 16777216
+            fieldName: title_caption
+            mode: NULLABLE
+            type: STRING
+            id: title_caption
+          - name: date
+            dateFormat: yyyy-mm-dd HH:MM:SS
+            isKey: true
+            fields: []
+            alias: date
+            length: 38
+            fieldName: date
+            mode: NULLABLE
+            type: TIMESTAMP
+            id: date
+          - name: created_date
+            dateFormat: yyyy-mm-dd HH:MM:SS
+            fields: []
+            alias: created_date
+            length: 38
+            fieldName: created_date
+            mode: NULLABLE
+            type: TIMESTAMP
+            id: created_date
+          - name: account_id
+            isKey: true
+            fields: []
+            alias: account_id
+            length: 16777216
+            fieldName: account_id
+            mode: NULLABLE
+            type: STRING
+            id: account_id
+          - name: owner_id
+            fields: []
+            alias: owner_id
+            length: 38
+            fieldName: owner_id
+            mode: NULLABLE
+            type: NUMBER
+            id: owner_id
+          - name: user_screen_name
+            fields: []
+            alias: user_screen_name
+            length: 16777216
+            fieldName: user_screen_name
+            mode: NULLABLE
+            type: STRING
+            id: user_screen_name
+          - name: account_name
+            fields: []
+            alias: account_name
+            length: 16777216
+            fieldName: account_name
+            mode: NULLABLE
+            type: STRING
+            id: account_name
+          - name: video_views
+            fields: []
+            alias: video_views
+            length: 38
+            fieldName: video_views
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views
+          - name: video_views_completed
+            fields: []
+            alias: video_views_completed
+            length: 38
+            fieldName: video_views_completed
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views_completed
+          - name: impressions
+            fields: []
+            alias: impressions
+            length: 38
+            fieldName: impressions
+            mode: NULLABLE
+            type: NUMBER
+            id: impressions
+          - name: engagement
+            fields: []
+            alias: engagement
+            length: 38
+            fieldName: engagement
+            mode: NULLABLE
+            type: NUMBER
+            id: engagement
+          - name: retweets
+            fields: []
+            alias: retweets
+            length: 38
+            fieldName: retweets
+            mode: NULLABLE
+            type: NUMBER
+            id: retweets
+          - name: replies
+            fields: []
+            alias: replies
+            length: 38
+            fieldName: replies
+            mode: NULLABLE
+            type: NUMBER
+            id: replies
+          - name: likes
+            fields: []
+            alias: likes
+            length: 38
+            fieldName: likes
+            mode: NULLABLE
+            type: NUMBER
+            id: likes
+          - name: url_clicks
+            fields: []
+            alias: url_clicks
+            length: 38
+            fieldName: url_clicks
+            mode: NULLABLE
+            type: NUMBER
+            id: url_clicks
+          - name: follows
+            fields: []
+            alias: follows
+            length: 38
+            fieldName: follows
+            mode: NULLABLE
+            type: NUMBER
+            id: follows
+          - name: tag_flag
+            fields: []
+            alias: tag_flag
+            length: 38
+            fieldName: tag_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: tag_flag
+          - name: hashtag_flag
+            fields: []
+            alias: hashtag_flag
+            length: 38
+            fieldName: hashtag_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: hashtag_flag
+          - name: question_flag
+            fields: []
+            alias: question_flag
+            length: 38
+            fieldName: question_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: question_flag
+          - name: exclamation_flag
+            fields: []
+            alias: exclamation_flag
+            length: 38
+            fieldName: exclamation_flag
+            mode: NULLABLE
+            type: BOOLEAN
+            id: exclamation_flag
+          - name: tweet_text_length
+            fields: []
+            alias: tweet_text_length
+            length: 38
+            fieldName: tweet_text_length
+            mode: NULLABLE
+            type: NUMBER
+            id: tweet_text_length
+          - name: tweet_text_group_length
+            fields: []
+            alias: tweet_text_group_length
+            length: 16777216
+            fieldName: tweet_text_group_length
+            mode: NULLABLE
+            type: STRING
+            id: tweet_text_group_length
+          - name: video_tweet_flag
+            fields: []
+            alias: video_tweet_flag
+            length: 1
+            fieldName: video_tweet_flag
+            mode: NULLABLE
+            type: STRING
+            id: video_tweet_flag
+          - name: video_views_75
+            fields: []
+            alias: video_views_75
+            length: 38
+            fieldName: video_views_75
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views_75
+          - name: video_views_50
+            fields: []
+            alias: video_views_50
+            length: 38
+            fieldName: video_views_50
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views_50
+          - name: video_views_25
+            fields: []
+            alias: video_views_25
+            length: 38
+            fieldName: video_views_25
+            mode: NULLABLE
+            type: NUMBER
+            id: video_views_25
+          - name: media_type
+            fields: []
+            alias: media_type
+            length: 16777216
+            fieldName: media_type
+            mode: NULLABLE
+            type: STRING
+            id: media_type
+          - name: favorite_count
+            fields: []
+            alias: favorite_count
+            length: 38
+            fieldName: favorite_count
+            mode: NULLABLE
+            type: NUMBER
+            id: favorite_count
+          - name: total_followers
+            fields: []
+            alias: total_followers
+            length: 38
+            fieldName: total_followers
+            mode: NULLABLE
+            type: NUMBER
+            id: total_followers
+          target_loading: overwrite
+          connection_id: 60ae6bc0ceb90c22c7fd32da
+          drop_after: false
+          target_type: table
+          split_tables: 'no'
+          block_db_type: snowflake
+          target_table: tweet_master
+          schema_id: '{BLOCK_SCHEMA}'
+          use_standard_sql: false
+          sql_query: "select\n'Twitter' as channel,\ntw.id as post_id,\nfull_text,\n\
+            full_text as title_caption,\ndate(created_at) as date,\nto_timestamp(created_at)\
+            \ as created_date,\naccount_id,\nuser_id as owner_id,\nuser_screen_name,\n\
+            user_name as account_name,\nCAST(video_total_views as integer) as video_views,\n\
+            CAST(video_views_100 as integer) as video_views_completed,\nCAST(impressions\
+            \ as integer) as impressions, \nCAST(engagements as integer) as engagement,\
+            \ \nCAST(retweets as integer) as retweets,\nCAST(replies as integer) as\
+            \ replies,\nCAST(likes as integer) as likes,\nCAST(url_clicks as integer)\
+            \ as url_clicks, \nCAST(follows as integer) as follows, \ncase when contains(full_text,\
+            \ '@') then true else false end as tag_flag,\ncase when contains(full_text,\
+            \ '#') then true else false end as hashtag_flag,\ncase when contains(full_text,\
+            \ '?') then true else false end as question_flag,\ncase when contains(full_text,\
+            \ '!') then true else false end as exclamation_flag,\nlength(full_text)\
+            \ as tweet_text_length,\ncase when length(full_text)<=50 then '0-50'\n\
+            when 50<length(full_text) and length(full_text)<=100 then '51-100'\nwhen\
+            \ 100<length(full_text) and length(full_text)<=125 then '101-125'\nwhen\
+            \ 125<length(full_text)then '126+' end as tweet_text_group_length,\ncase\
+            \ when video_total_views = 0 then 'N' else 'Y' end as video_tweet_flag,\n\
+            CAST(video_views_75 as integer) as video_views_75,\nCAST(video_views_50\
+            \ as integer) as video_views_50,\nCAST(video_views_25 as integer) as video_views_25,\n\
+            media_type,\nfavorite_count,\nCAST(user_followers_count AS integer) as\
+            \ total_followers\nfrom {BLOCK_DB}.{BLOCK_SCHEMA}.tweet_details tw\ninner\
+            \ join (\n  SELECT id,\n  lower(type) as media_type,\n  SUM(video_total_views)\
+            \ as video_total_views,\n  SUM(video_views_100) as video_views_100,\n\
+            \  SUM(video_views_75) as video_views_75,\n  SUM(video_views_50) as video_views_50,\n\
+            \  SUM(video_views_25) as video_views_25,\n  SUM(impressions) as impressions,\n\
+            \  SUM(engagements) as engagements,\n  SUM(retweets) as retweets,\n  SUM(replies)\
+            \ as replies,\n  SUM(likes) as likes,\n  SUM(url_clicks) as url_clicks,\n\
+            \  SUM(follows) as follows\n  FROM {BLOCK_DB}.{BLOCK_SCHEMA}.tweet_activity\n\
+            \  GROUP BY id, type\n) tw_a\nON cast(tw_a.id as integer) = tw.id\nWHERE\
+            \ tw.tweet_type is not null"
+          split_interval: d
+          query_priority: interactive
+      - type: step
+        isEnabled: true
+        step_name: Combine all social channels
+        block_primary_type: sql
+        block_type: snowflake
+        file_type: csv
+        split_interval: d
+        compression: none
+        warning_mapping: true
+        schema_id: '{BLOCK_SCHEMA}'
+        drop_after: false
+        query_priority: interactive
+        execute_sql_command: false
+        connection_id: 60ae6bc0ceb90c22c7fd32da
+        target_table: fact_social
+        split_tables: 'no'
+        database: '{BLOCK_DB}'
+        target_loading: overwrite
+        target_type: table
+        block_db_type: snowflake
+        fields:
+        - name: channel
+          fields: []
+          alias: channel
+          length: 16777216
+          fieldName: channel
+          mode: NULLABLE
+          type: STRING
+          id: channel
+        - name: ig_id
+          fields: []
+          alias: ig_id
+          length: 16777216
+          fieldName: ig_id
+          mode: NULLABLE
+          type: STRING
+          id: ig_id
+        - name: post_id
+          isKey: true
+          fields: []
+          alias: post_id
+          length: 16777216
+          fieldName: post_id
+          mode: NULLABLE
+          type: STRING
+          id: post_id
+        - name: owner_id
+          fields: []
+          alias: owner_id
+          length: 38
+          fieldName: owner_id
+          mode: NULLABLE
+          type: NUMBER
+          id: owner_id
+        - name: account_id
+          isKey: true
+          fields: []
+          alias: account_id
+          length: 16777216
+          fieldName: account_id
+          mode: NULLABLE
+          type: STRING
+          id: account_id
+        - name: account_name
+          fields: []
+          alias: account_name
+          length: 16777216
+          fieldName: account_name
+          mode: NULLABLE
+          type: STRING
+          id: account_name
+        - name: media_url
+          fields: []
+          alias: media_url
+          length: 16777216
+          fieldName: media_url
+          mode: NULLABLE
+          type: STRING
+          id: media_url
+        - name: permalink
+          fields: []
+          alias: permalink
+          length: 16777216
+          fieldName: permalink
+          mode: NULLABLE
+          type: STRING
+          id: permalink
+        - name: media_type
+          fields: []
+          alias: media_type
+          length: 16777216
+          fieldName: media_type
+          mode: NULLABLE
+          type: STRING
+          id: media_type
+        - name: post_description
+          fields: []
+          alias: post_description
+          length: 16777216
+          fieldName: post_description
+          mode: NULLABLE
+          type: STRING
+          id: post_description
+        - name: post_title
+          fields: []
+          alias: post_title
+          length: 16777216
+          fieldName: post_title
+          mode: NULLABLE
+          type: STRING
+          id: post_title
+        - name: date
+          dateFormat: yyyy-mm-dd HH:MM:SS
+          isKey: true
+          fields: []
+          alias: date
+          length: 38
+          fieldName: date
+          mode: NULLABLE
+          type: TIMESTAMP
+          id: date
+        - name: created_date
+          dateFormat: yyyy-mm-dd HH:MM:SS
+          fields: []
+          alias: created_date
+          length: 38
+          fieldName: created_date
+          mode: NULLABLE
+          type: TIMESTAMP
+          id: created_date
+        - name: title_caption
+          fields: []
+          alias: title_caption
+          length: 16777216
+          fieldName: title_caption
+          mode: NULLABLE
+          type: STRING
+          id: title_caption
+        - name: video_views
+          fields: []
+          alias: video_views
+          length: 38
+          fieldName: video_views
+          mode: NULLABLE
+          type: NUMBER
+          id: video_views
+        - name: likes
+          fields: []
+          alias: likes
+          length: 38
+          fieldName: likes
+          mode: NULLABLE
+          type: NUMBER
+          id: likes
+        - name: comments
+          fields: []
+          alias: comments
+          length: 38
+          fieldName: comments
+          mode: NULLABLE
+          type: NUMBER
+          id: comments
+        - name: saved
+          fields: []
+          alias: saved
+          length: 38
+          fieldName: saved
+          mode: NULLABLE
+          type: NUMBER
+          id: saved
+        - name: reach
+          fields: []
+          alias: reach
+          length: 38
+          fieldName: reach
+          mode: NULLABLE
+          type: NUMBER
+          id: reach
+        - name: shares
+          fields: []
+          alias: shares
+          length: 38
+          fieldName: shares
+          mode: NULLABLE
+          type: NUMBER
+          id: shares
+        - name: impressions
+          fields: []
+          alias: impressions
+          length: 38
+          fieldName: impressions
+          mode: NULLABLE
+          type: NUMBER
+          id: impressions
+        - name: engagement
+          fields: []
+          alias: engagement
+          length: 38
+          fieldName: engagement
+          mode: NULLABLE
+          type: NUMBER
+          id: engagement
+        - name: is_hidden
+          fields: []
+          alias: is_hidden
+          length: 38
+          fieldName: is_hidden
+          mode: NULLABLE
+          type: BOOLEAN
+          id: is_hidden
+        - name: is_published
+          fields: []
+          alias: is_published
+          length: 38
+          fieldName: is_published
+          mode: NULLABLE
+          type: BOOLEAN
+          id: is_published
+        - name: other_clicks
+          fields: []
+          alias: other_clicks
+          length: 38
+          fieldName: other_clicks
+          mode: NULLABLE
+          type: NUMBER
+          id: other_clicks
+        - name: photo_view
+          fields: []
+          alias: photo_view
+          length: 38
+          fieldName: photo_view
+          mode: NULLABLE
+          type: NUMBER
+          id: photo_view
+        - name: link_clicks
+          fields: []
+          alias: link_clicks
+          length: 38
+          fieldName: link_clicks
+          mode: NULLABLE
+          type: NUMBER
+          id: link_clicks
+        - name: video_play_clicks
+          fields: []
+          alias: video_play_clicks
+          length: 38
+          fieldName: video_play_clicks
+          mode: NULLABLE
+          type: NUMBER
+          id: video_play_clicks
+        - name: favorite_count
+          fields: []
+          alias: favorite_count
+          length: 38
+          fieldName: favorite_count
+          mode: NULLABLE
+          type: NUMBER
+          id: favorite_count
+        - name: retweets
+          fields: []
+          alias: retweets
+          length: 38
+          fieldName: retweets
+          mode: NULLABLE
+          type: NUMBER
+          id: retweets
+        - name: page_fan_adds
+          fields: []
+          alias: page_fan_adds
+          length: 38
+          fieldName: page_fan_adds
+          mode: NULLABLE
+          type: NUMBER
+          id: page_fan_adds
+        - name: page_fan_count
+          fields: []
+          alias: page_fan_count
+          length: 38
+          fieldName: page_fan_count
+          mode: NULLABLE
+          type: NUMBER
+          id: page_fan_count
+        - name: page_fan_removes
+          fields: []
+          alias: page_fan_removes
+          length: 38
+          fieldName: page_fan_removes
+          mode: NULLABLE
+          type: NUMBER
+          id: page_fan_removes
+        - name: page_views
+          fields: []
+          alias: page_views
+          length: 38
+          fieldName: page_views
+          mode: NULLABLE
+          type: NUMBER
+          id: page_views
+        - name: page_consumptions
+          fields: []
+          alias: page_consumptions
+          length: 38
+          fieldName: page_consumptions
+          mode: NULLABLE
+          type: NUMBER
+          id: page_consumptions
+        - name: page_engaged_users
+          fields: []
+          alias: page_engaged_users
+          length: 38
+          fieldName: page_engaged_users
+          mode: NULLABLE
+          type: NUMBER
+          id: page_engaged_users
+        - name: total_followers
+          fields: []
+          alias: total_followers
+          length: 38
+          fieldName: total_followers
+          mode: NULLABLE
+          type: NUMBER
+          id: total_followers
+        - name: follows
+          fields: []
+          alias: follows
+          length: 38
+          fieldName: follows
+          mode: NULLABLE
+          type: NUMBER
+          id: follows
+        - name: page_impressions
+          fields: []
+          alias: page_impressions
+          length: 38
+          fieldName: page_impressions
+          mode: NULLABLE
+          type: NUMBER
+          id: page_impressions
+        - name: page_reach
+          fields: []
+          alias: page_reach
+          length: 38
+          fieldName: page_reach
+          mode: NULLABLE
+          type: NUMBER
+          id: page_reach
+        - name: page_fan_count_today
+          fields: []
+          alias: page_fan_count_today
+          length: 38
+          fieldName: page_fan_count_today
+          mode: NULLABLE
+          type: NUMBER
+          id: page_fan_count_today
+        use_standard_sql: false
+        sql_query: 'SELECT
+
+          channel,
+
+          ig_id,
+
+          TO_VARCHAR(post_id) as post_id,
+
+          owner_id,
+
+          account_id,
+
+          account_name,
+
+          media_url,
+
+          permalink,
+
+          media_type,
+
+          null as post_description,
+
+          null as post_title,
+
+          date,
+
+          created_date,
+
+          title_caption,
+
+          video_views,
+
+          likes,
+
+          comments,
+
+          saved,
+
+          reach,
+
+          null as shares,
+
+          impressions,
+
+          engagement,
+
+          null as is_hidden,
+
+          null as is_published,
+
+          null as other_clicks,
+
+          null as photo_view,
+
+          null as link_clicks,
+
+          null as video_play_clicks,
+
+          null as favorite_count,
+
+          null as retweets,
+
+          null as page_fan_adds,
+
+          null as page_fan_count,
+
+          null as page_fan_removes,
+
+          null as page_views,
+
+          null as page_consumptions,
+
+          null as page_engaged_users,
+
+          total_followers,
+
+          follows,
+
+          page_impressions,
+
+          page_reach,
+
+          null as page_fan_count_today
+
+          from {BLOCK_DB}.{BLOCK_SCHEMA}.ig_master
+
+          UNION ALL
+
+          SELECT
+
+          channel,
+
+          null as ig_id,
+
+          TO_VARCHAR(post_id) as post_id,
+
+          null owner_id,
+
+          account_id,
+
+          account_name,
+
+          null as media_url,
+
+          permalink,
+
+          media_type,
+
+          post_description,
+
+          post_title,
+
+          date,
+
+          created_date,
+
+          title_caption,
+
+          video_views,
+
+          likes,
+
+          comments,
+
+          null as saved,
+
+          reach,
+
+          shares,
+
+          impressions,
+
+          engagement,
+
+          is_hidden,
+
+          is_published,
+
+          other_clicks,
+
+          photo_view,
+
+          link_clicks,
+
+          video_play_clicks,
+
+          null as favorite_count,
+
+          null as retweets,
+
+          page_fan_adds,
+
+          page_fan_count,
+
+          page_fan_removes,
+
+          page_views,
+
+          page_consumptions,
+
+          page_engaged_users,
+
+          null as total_followers,
+
+          null as follows,
+
+          page_impressions,
+
+          page_reach,
+
+          page_fan_count_today
+
+          from {BLOCK_DB}.{BLOCK_SCHEMA}.fb_master
+
+          UNION ALL
+
+          SELECT
+
+          channel,
+
+          null as ig_id,
+
+          TO_VARCHAR(post_id) as post_id,
+
+          owner_id,
+
+          account_id,
+
+          account_name,
+
+          null as media_url,
+
+          null as permalink,
+
+          media_type,
+
+          null as post_description,
+
+          null as post_title,
+
+          date,
+
+          created_date,
+
+          title_caption,
+
+          video_views,
+
+          likes,
+
+          replies as comments,
+
+          null as saved,
+
+          null as reach,
+
+          null as shares,
+
+          impressions,
+
+          engagement,
+
+          null as is_hidden,
+
+          null as is_published,
+
+          null as other_clicks,
+
+          null as photo_view,
+
+          null as link_clicks,
+
+          null as video_play_clicks,
+
+          favorite_count,
+
+          retweets,
+
+          null as page_fan_adds,
+
+          null as page_fan_count,
+
+          null as page_fan_removes,
+
+          null as page_views,
+
+          null as page_consumptions,
+
+          null as page_engaged_users,
+
+          total_followers,
+
+          follows,
+
+          null as page_impressions,
+
+          null as page_reach,
+
+          null as page_fan_count_today
+
+          from {BLOCK_DB}.{BLOCK_SCHEMA}.tweet_master'
+      variables: {}
+    schedule: {}
+    notifications:
+      on_warning:
+        enabled: true
+        email: '{NOTIFICATION_GROUP}'
+      on_failure:
+        enabled: true
+        email: '{NOTIFICATION_GROUP}'
+    name: Social Analytics Logic - Snowflake
+    description: Imported by Rivery CLI
+    type: logic
